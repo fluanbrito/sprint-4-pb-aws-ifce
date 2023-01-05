@@ -16,7 +16,7 @@ function formatevalue(value) {
     return newValue
 };
 
-function createJson(dateupdate, datecreate, icon, id, piada, referencia) {
+function createJsonCN(dateupdate, datecreate, icon, id, piada, referencia) {
     let template = `{
         "data_atualizacao": "${dateupdate}",
             "data_criacao": "${datecreate}",
@@ -28,6 +28,24 @@ function createJson(dateupdate, datecreate, icon, id, piada, referencia) {
     `
     tempJson = JSON.parse(template)
     return tempJson
+};
+
+function createJsonAT(id, atividades, tipo, participantes, acessibilidade) {
+    let template = `{
+        "id": "${id}",
+        "atividade": "${atividades}",
+        "tipo": "${tipo}",
+        "participantes": ${participantes},
+        "acessibilidade": "${acessibilidade}"
+      }
+    `
+    tempJson = JSON.parse(template)
+    return tempJson
+};
+
+function formatAcc(acc) {
+    newAcc = `${(parseFloat(acc)) * 100}%`
+    return newAcc
 };
 
 app.get('/', (req, res) =>
@@ -42,11 +60,24 @@ app.get('/api/piadas', async (req, res) => {
     const piada = formatevalue(data.value)
     const referencia = data.url
 
-    const returnValue = createJson(dateupdate, datecreate, icon, id, piada, referencia)
+    const returnValueCN = createJsonCN(dateupdate, datecreate, icon, id, piada, referencia)
 
-    res.send(returnValue)
+    res.send(returnValueCN)
 })
 
-app.listen(3000, () => {
-    console.log(`Rodando na porta 3000`)
+app.get('/api/atividades', async (req, res) => {
+    const { data } = await axios("https://www.boredapi.com/api/activity")
+    const id = uuidv4()
+    const atividades = data.activity
+    const tipo = data.type
+    const participantes = data.participants
+    const acessibilidade = formatAcc(data.accessibility)
+
+    const returnValueAT = createJsonAT(id, atividades, tipo, participantes, acessibilidade)
+
+    res.send(returnValueAT)
+})
+
+app.listen(8080, () => {
+    console.log(`Rodando na porta 8080`)
 })
