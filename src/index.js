@@ -4,12 +4,15 @@ const express = require("express");
 
 const server = express();
 
+console.log("Servidor aberto em: 127.0.0.1")
+
 server.use(express.json());
 
-server.listen(8080);
+server.listen(80); // Ouvindo na porta 80
+console.log("Servidor aberto em: 127.0.0.1");
 
 server.get("/", (req, res) => {
-    return res.send("Este é o app do grupo 3")
+    return res.send("Este é o app do grupo 3 😎")
 });
 
 server.get("/api/piadas", async (req, res) => {
