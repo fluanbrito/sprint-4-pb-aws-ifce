@@ -4,8 +4,6 @@ const express = require("express");
 
 const server = express();
 
-console.log("Servidor aberto em: 127.0.0.1")
-
 server.use(express.json());
 
 server.listen(80); // Ouvindo na porta 80
