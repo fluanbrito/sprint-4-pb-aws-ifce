@@ -1,12 +1,16 @@
-const api = require("./api");
+const api_chucknorris = require("./api_chucknorris");
+const api_atividades = require("./api_atividades");
 const express = require("express");
 const server = express();
 server.use(express.json());
 const axios = require("axios");
 
+//Rota inicial
+server.get("/", (req, res) => {
+    return res.send("Este é o app do grupo 3 😎")
+});
 
-
-//Formatações e rotas da API Chuck Norris
+//FUNÇÕES DE FORMATAÇÃO DA API CHUCK NORRIS
 
 //deixando a palavra "Chuck Norris" em alta caixa
 function upperName(valor) {
@@ -26,18 +30,13 @@ function formatar_data(valor_data) {
     return `${new_data[2]}-${new_data[1]}-${new_data[0]}`
 };
 
-
-server.get("/", (req, res) => {
-    return res.send("Este é o app do grupo 3 😎")
-});
-
 //padrão do ID
 const { v4: uuidv4 } = require('uuid');
 
 //rotas formatações dos dados que serão apresentados
 server.get("/api/piadas", async (req, res) => {
     try {
-        const {data} = await api.get('https://api.chucknorris.io/jokes/random')
+        const {data} = await api_chucknorris.get('/jokes/random')
     
         return res.send({
             "data_atualizacao": formatar_data((data.updated_at)),
@@ -54,7 +53,7 @@ server.get("/api/piadas", async (req, res) => {
 });
 
 
-//FUNÇÕES DE FORMATAÇÃO E ROTAS DA API "ATIVIDADES"
+//FUNÇÕES DE FORMATAÇÃO DA API "ATIVIDADES"
 
 //formatando o dados de acessibilidade
 function formatar_accessibility(acc) {
@@ -65,7 +64,7 @@ function formatar_accessibility(acc) {
 //rotas e formatação dos dados apresentados
 server.get("/api/atividades", async (req, res) => {
     try {
-        const {data} = await api.get('https://www.boredapi.com/api/activity')
+        const {data} = await api_atividades.get('/api/activity')
     
         return res.send({
             "id": data.id,
