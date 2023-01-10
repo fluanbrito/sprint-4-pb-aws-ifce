@@ -1,34 +1,16 @@
-const api_chucknorris = require("./api_chucknorris");
-const api_atividades = require("./api_atividades");
+const api_chucknorris = require("./apis/api_chucknorris");
+const api_atividades = require("./apis/api_atividades");
 const express = require("express");
 const server = express();
 server.use(express.json());
 const axios = require("axios");
+const chuck_utils = require("./utils/chuck_utils")
+const atividade_utils = require("./utils/atividades_utils")
 
 //Rota inicial
 server.get("/", (req, res) => {
     return res.send("Este é o app do grupo 3 😎")
 });
-
-//FUNÇÕES DE FORMATAÇÃO DA API CHUCK NORRIS
-
-//deixando a palavra "Chuck Norris" em alta caixa
-function upperName(valor) {
-    new_valor = valor.replace('Chuck Norris', 'Chuck Norris'.toLocaleUpperCase())
-    return new_valor
-}
-
-//formatando a piada
-function formatar_piada(valor) {
-    new_valor = valor.replace(/"/g, '`')
-    return new_valor
-}
-
-//formatando data
-function formatar_data(valor_data) {
-    new_data = valor_data.slice(0, 10).split('-');
-    return `${new_data[2]}-${new_data[1]}-${new_data[0]}`
-};
 
 //padrão do ID
 const { v4: uuidv4 } = require('uuid');
@@ -39,11 +21,11 @@ server.get("/api/piadas", async (req, res) => {
         const {data} = await api_chucknorris.get('/jokes/random')
     
         return res.send({
-            "data_atualizacao": formatar_data((data.updated_at)),
-            "data_criacao": formatar_data((data.created_at)),
+            "data_atualizacao": chuck_utils.formatar_data((data.updated_at)),
+            "data_criacao": chuck_utils.formatar_data((data.created_at)),
             "icone": data.icon_url,
             "id": uuidv4(),
-            "piada": formatar_piada(upperName(data.value)),
+            "piada": chuck_utils.formatar_piada(chuck_utils.upperName(data.value)),
             "referencia": data.url
     
         })
@@ -51,15 +33,6 @@ server.get("/api/piadas", async (req, res) => {
         res.send({error: error.message})  
     }
 });
-
-
-//FUNÇÕES DE FORMATAÇÃO DA API "ATIVIDADES"
-
-//formatando o dados de acessibilidade
-function formatar_accessibility(acc) {
-    newAcc = `${(parseFloat(acc)) * 100}%`
-    return newAcc
-};
 
 //rotas e formatação dos dados apresentados
 server.get("/api/atividades", async (req, res) => {
@@ -71,7 +44,7 @@ server.get("/api/atividades", async (req, res) => {
             "atividade": data.activity,
             "tipo": data.type,
             "participantes": data.participants,
-            "acessibilidade": formatar_accessibility(data.accessibility)
+            "acessibilidade": atividade_utils.formatar_accessibility(data.accessibility)
 
         })
     }   catch (error) {
