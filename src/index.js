@@ -7,15 +7,15 @@ const axios = require("axios");
 const chuck_utils = require("./utils/chuck_utils")
 const atividade_utils = require("./utils/atividades_utils")
 
+//padrão do ID
+const { v4: uuidv4 } = require('uuid');
+
 //Rota inicial
 server.get("/", (req, res) => {
     return res.send("Este é o app do grupo 3 😎")
 });
 
-//padrão do ID
-const { v4: uuidv4 } = require('uuid');
-
-//rotas formatações dos dados que serão apresentados
+//rotas chucknorris
 server.get("/api/piadas", async (req, res) => {
     try {
         const {data} = await api_chucknorris.get('/jokes/random')
@@ -34,13 +34,13 @@ server.get("/api/piadas", async (req, res) => {
     }
 });
 
-//rotas e formatação dos dados apresentados
+//rotas api atividades
 server.get("/api/atividades", async (req, res) => {
     try {
         const {data} = await api_atividades.get('/api/activity')
     
         return res.send({
-            "id": data.id,
+            "id": uuidv4(),
             "atividade": data.activity,
             "tipo": data.type,
             "participantes": data.participants,
