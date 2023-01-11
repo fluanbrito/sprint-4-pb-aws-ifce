@@ -1,24 +1,7 @@
 const axios = require("axios")
 const { v4: uuidv4 } = require('uuid');
 
-function createJsonAT(id, atividades, tipo, participantes, acessibilidade) {
-    let template = `{
-        "id": "${id}",
-        "atividade": "${atividades}",
-        "tipo": "${tipo}",
-        "participantes": ${participantes},
-        "acessibilidade": "${acessibilidade}"
-      }
-    `
-    tempJson = JSON.parse(template)
-    return tempJson
-};
-
-function formatAcc(acc) {
-    newAcc = `${(parseFloat(acc)) * 100}%`
-    return newAcc
-};
-
+const func = require("../functions/Atfunctions.js")
 
 exports.atJson = async (req, res) => {
     const { data } = await axios("https://www.boredapi.com/api/activity")
@@ -26,9 +9,9 @@ exports.atJson = async (req, res) => {
     const atividades = data.activity
     const tipo = data.type
     const participantes = data.participants
-    const acessibilidade = formatAcc(data.accessibility)
+    const acessibilidade = func.formatAcc(data.accessibility)
 
-    const returnValueAT = createJsonAT(id, atividades, tipo, participantes, acessibilidade)
+    const returnValueAT = func.createJsonAT(id, atividades, tipo, participantes, acessibilidade)
 
     res.send(returnValueAT)
 }
