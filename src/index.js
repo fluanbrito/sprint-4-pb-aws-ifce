@@ -8,7 +8,7 @@ const route_atividades = require("./routes/atividades")
 
 server.use(express.json());
 
-// Rota inicial
+// rota inicial
 server.use('/', route_home)
 
 // rotas chucknorris
