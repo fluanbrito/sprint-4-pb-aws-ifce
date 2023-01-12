@@ -2,12 +2,8 @@
 
 //formatando o dados de acessibilidade
 function formatar_accessibility(valor) {
-
-    valor = parseFloat(valor)
-    valor *= 100
-    
-    return `${valor}%`
-    
+    valor = parseFloat(valor) * 100
+    return valor + '%'
 };
 
 module.exports = {formatar_accessibility}

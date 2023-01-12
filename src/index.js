@@ -2,20 +2,20 @@ const express = require("express");
 const server = express();
 
 // Importando rotas
-const route_home = require("./routes/home")
-const route_chucknorris = require("./routes/chucknorris")
-const route_atividades = require("./routes/atividades")
+const inicio = require("./routes/inicio")
+const chuckNorris = require("./routes/api_chucknorris")
+const atv = require("./routes/api_atv")
 
 server.use(express.json());
 
 // rota inicial
-server.use('/', route_home)
+server.use('/', inicio)
 
 // rotas chucknorris
-server.use('/api', route_chucknorris)
+server.use('/api', chuckNorris)
 
 // rotas api atividades
-server.use('/api', route_atividades)
+server.use('/api', atv)
 
 
 // Ouvindo na porta 8080
