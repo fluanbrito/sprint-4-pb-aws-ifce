@@ -59,6 +59,7 @@ Agora, vamos instalar a dependência axios, que é um cliente HTTP baseado em pr
 npm install --save axios
 ```
 Agora chega uma parte muito importante do projeto que é a organização geral do código fonte. Nesse caso, na pasta raiz irá se encontrar apenas nossos arquivos json gerados. Para uma maior organização foi criado uma pasta /src onde estará o arquivo index e dois diretórios, o /routes para as rotas e o /utils para as funções de formatação das APIs. Como mostrado na imagem abaixo:
+
 ![estrutura_arquivos](https://user-images.githubusercontent.com/119500249/212207758-c94e1c19-daf2-4120-8845-683affe1a99d.png)
 
 Agora adentrando as rotas das APIs, temos primeiro a rota da API de atividades, segue o código:
@@ -91,7 +92,7 @@ router.get('/atividades',async (req,res) => {
 
 module.exports = router
 ```
-Após isso, vamos as rotas de acesso a API do Chuck Norris
+Após vamos as rotas de acesso a API do Chuck Norris
 ```
 const express = require("express")
 const router = express.Router()
@@ -136,7 +137,7 @@ router.get('/',(req,res) => {
 module.exports = router
 ```
 
-Já finalizada a parte de configurações das rotas, adentramos agora a pasta /utils, onde consta as formatações necessárias de ambas as APIs. Vamos agora a formatação adevinda da API de atividades.
+Já finalizada a parte de configurações das rotas, adentramos agora a pasta /utlis onde consta as formatações necessárias de ambas as APIs. Vamos agora a formatação adevinda da API de atividades.
 ```
 //FUNÇÕES DE FORMATAÇÃO DA API "ATIVIDADES"
 
@@ -199,7 +200,43 @@ server.listen(8080);
 console.log("Servidor aberto em 8080");
 ```
 Agora iremos fazer a preparação do projeto para Deploy no Elastic Beanstalk, acessando o arquivo package.json, é preciso criar a chave ==start== dentro do objeto ==scripts== renomeando-o de acordo com o arquivo de importação de rotas do teu projeto. Segue exemplo de como deve ficar:
+
 ![json_config](https://user-images.githubusercontent.com/119500249/212320151-78cb8ccb-7aa2-460c-beb0-6c519fec416a.png)
+
+Agora adentrando a parte do Deploy by AWS Elastic Beanstalk. Primeiro, é necessário selecionar o servidor da Virgínia do Norte, para isso, ao lado do campo de perfil do lado direito da tela, temos a opção de região, a que iremos utilizar é a Leste dos EUA (Norte da Virgínia) ou simplesmente *us-east-1*, observe como deve ficar:
+
+![regiao](https://user-images.githubusercontent.com/119500249/212570664-8a6de775-8426-492b-98aa-cf4f22849c87.png)
+
+1. Observou que estar na região correta, na barra de pesquisa de serviços da AWS, pesquise por: "Elastic Beanstalk" e selecione esse serviço.
+2. Com o painel do Elastic Beanstalk aberto, irimos criar uma nova aplicação, para isso selecione o botão de Create Application localizada no canto superior direito da página. Segue a figura:
+
+![create_application](https://user-images.githubusercontent.com/119500249/212570956-26296251-ebb3-405e-9c8a-64e65f085823.png)
+
+3. Após irá carregar a tela de criação da aplicação, nela iremos escolher um nome correspondente a apliação. Ex.: "node_api". Na seção de **Plataforma** selecione a opção Node.js e você também pode escolher a **Ramificação da plataforma** e a **Versão da plataforma**, todavia, iremos deixar padrão conforme mostra a figura abaixo:
+
+![plataforma_node.js](https://user-images.githubusercontent.com/119500249/212571310-fb2c3df2-37cb-4c58-a179-a3388fef3d3b.png)
+
+4. Seguindo na criação da aplicação da aplicação, na seção de **Código do aplicativo**, selecione a opção "Fazer upload do código". Observe que logo abaixo surgiu uma seção de **Origem do código-fonte**, nele iremos seleciona o campo de "Rótulo da versão" e renomear de acordo com a versão de sua aplicação. 
+Ex.: projeto-node-v1 ou projeto-node-v1.0.0
+É importante que conforme você for atualizando os arquivos e gerando o arquivo ZIP compactado, lembre-se de sempre tá mudando o rótulo da versão para uma versão atualizada.
+Ex.: antes era projeto-node-v1 ou projeto-node-v1.0.0 agora passe a chama de projeto-node-v1.1 ou v2 ou projeto-node-v1.0.0.1 ou v2.0.0
+
+![rotulo_versao](https://user-images.githubusercontent.com/119500249/212572499-ad302360-354d-45dd-879d-512088d89395.png)
+
+5. Agora deixe selecionado a opção "Arquivo local" e aperte em "Escolher arquivo". Nessa nova janela já com todos os arquivos da apliação selecionados, clique no botão esquerdo do mouse e selecione a opção "Compactar para arquivo ZIP", por fim nomei o arquivo ZIP gerado com tua preferência, selecione-o e clique em Abrir. Segue um exemplo de base de como realizar esse procedimento:
+
+![arquivos_compactados](https://user-images.githubusercontent.com/119500249/212571582-0bd807bc-9835-43e6-b0ba-f78be1b3c340.png)
+![arquivo_ZIP](https://user-images.githubusercontent.com/119500249/212571930-48aec2be-8d8d-4616-a430-0211f7423129.png)
+
+Obs.: é de extrema importância adicionar todos os arquivos da apliação dentro desse arquivo ZIP, apenas deixe de fora o arquivo do README.md, o mesmo não é necessário estar dentro do arquivo gerado.
+
+Se tudo tiver ok, será mostrado a nome do arquivo e a sinalização de Arquivo carregado com êxito. Como base:
+
+![arquivo_carregado](https://user-images.githubusercontent.com/119500249/212572711-7d6973bd-fb1c-4407-992f-358ca4a98156.png)
+
+6. Por fim clique em "Create application"
+
+
 
 
 
