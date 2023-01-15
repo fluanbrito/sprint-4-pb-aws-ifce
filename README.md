@@ -215,6 +215,9 @@ Adentrando a pasta **functions**, temos os arquivos js responsáveis pela format
 ## Deploy (AWS Elastic Beanstalk)
 
  ELASTIC BEANSTALK é um serviço da AWS para implementar e escalar aplicações e serviços da Web, fazendo o deploy de aplicações, assim como realizar atualizações destes deploys. A ideia se dá pela junção dos aquivos de uma aplicação em um .ZIP, sendo que a criação da infraestrutura é feita pela própria BEANSTALK. 
+ 
+ 
+ ## Passo a Passo 
 
 1. [Acesse o serviço Elastic Beanstalk no console da AWS.](https://us-east-1.console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1#/welcome)
 
@@ -266,6 +269,9 @@ Basta clicar em "Upload and deploy" e selecionar o arquivo .zip com o projeto at
 Lembre-se de manter uma coêrencia nas versões por exemplo: projeto-node-v1, projeto-node-v2, etc.
 
 ![Step 10 screenshot](https://images.tango.us/workflows/6d444cf6-7a3c-4959-b26c-55383834d79f/steps/ac98c95f-721b-409b-8ef3-5cbc8d90b4a6/7e18be39-5928-436a-bcf9-aa2f1ddb5060.png?crop=focalpoint&fit=crop&fp-x=0.5373&fp-y=0.4019&fp-z=1.5703&w=1200&mark-w=0.2&mark-pad=0&mark64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL21hZGUtd2l0aC10YW5nby13YXRlcm1hcmsucG5n&ar=1920%3A902)
+
+## Extensão do Arquivo 
+Deve-se atentar no formato de deploy da aplicações na Elastic Beanstalk. Para que não haja erro na operações os arquivos devem está agrupados em um .ZIP, pois existem outras formas de comprimir arquivos, sendo que estás não são compatíveis. 
 
 ## Autores
 
