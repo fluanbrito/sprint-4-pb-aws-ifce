@@ -214,7 +214,7 @@ Adentrando a pasta **functions**, temos os arquivos js responsáveis pela format
 
 ## Deploy (AWS Elastic Beanstalk)
 
- ELASTIC BEANSTALK é um serviço da AWS para implementar e escalar aplicações e serviços da Web, fazendo o deploy de aplicações, assim como realizar atualizações destes deploys. A ideia se dá pela junção dos aquivos de uma aplicação em um .ZIP, sendo que a criação da infraestrutura é criada pela própria BEANSTALK. 
+ ELASTIC BEANSTALK é um serviço da AWS para implementar e escalar aplicações e serviços da Web, fazendo o deploy de aplicações, assim como realizar atualizações destes deploys. A ideia se dá pela junção dos aquivos de uma aplicação em um .ZIP, sendo que a criação da infraestrutura é feita pela própria BEANSTALK. 
 
 1. [Acesse o serviço Elastic Beanstalk no console da AWS.](https://us-east-1.console.aws.amazon.com/elasticbeanstalk/home?region=us-east-1#/welcome)
 
