@@ -18,9 +18,8 @@ router.get('/', async(req, res) => {
             "acessibilidade": "${format.acessibilidade(data.accessibility)}"
         }`);
 
-        console.log(atividades);
+        res.send(atividades)
 
-        res.render('atividades', { atividades });
     } catch (error) {
         res.send({error: error.message});
     }

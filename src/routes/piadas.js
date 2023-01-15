@@ -18,10 +18,9 @@ router.get('/', async(req, res) => {
             "piada": "${format.caixaAlta(data.value)}",
             "referencia": "${data.url}"
         }`);
-        
-        console.log(piadas);
     
-        res.render('piadas', { piadas });
+        res.send(piadas);
+
     } catch (error) {
         res.send({error: error.message});
     }

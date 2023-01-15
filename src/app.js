@@ -10,16 +10,16 @@ app.listen(PORT, function() {
    console.log(`O APP está rodando na porta ${PORT}`)
 });
 
-// Setando as views com handlebars
-app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+// // Setando as views com handlebars
+// app.set('views', path.join(__dirname, 'views'));
+// app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
+// app.set('view engine', 'handlebars');
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async(req, res) => {
    // Renderiza a página HTML index
-   res.render('index');
+   res.send("<h1>Este é o app do grupo 5 \uD83D\uDE0A</h1>");
 });
 
 // Uso das rotas
