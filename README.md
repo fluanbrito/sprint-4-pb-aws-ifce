@@ -1,125 +1,212 @@
 # Avaliação Sprint 4 - Programa de Bolsas Compass UOL / AWS e IFCE
 
-Avaliação da quarta sprint do programa de bolsas Compass UOL para formação em machine learning para AWS.
+> Avaliação da quarta sprint do programa de bolsas Compass UOL para formação em machine learning para AWS.
 
-***
+## Objetivos
+
+Com base nas atividades anteriores realizadas, criamos uma aplicação Node.js (express) que consome duas APIs distintas e efetuamos o deploy na AWS Elastic Beanstalk.
+
+## Ferramentas / plataformas utilizadas
+
+* Visual Studio Code (VS Code)
+* Node.js
+* Github
+* Amazon Web Services (AWS)
+
+## Especificações
+Nossa aplicação possui a seguinte estrutura, com divisão de responsabilidades em arquivos/pastas distintos:
+
+![img01](https://uploaddeimagens.com.br/images/004/299/310/full/imagem_2023-01-14_192932724.png?1673735373)
+
+Dentro da **src** temos três pastas onde dividimos as tarefas executadas por nossa aplicação, visando uma melhor organização:
+
+* **controllers:** responsável por armazenar  os arquivos js que fazem a requisição dos dados obtido através das APIs.
+* **functions:** responsável por armazenar os arquivos js que possuem as funções utilizadas na formatação dos dados obtidos pelas APIs.
+* **routes:** responsável por armazenar os arquivos js que referenciam nossas rotas.
 
 ## Execução (Código Fonte)
 
-Com base nas atividades anteriores realizadas, crie uma aplicação nodeJs (express) que irá consumir duas APIs distintas e efetue o deploy na AWS Elastic Beanstalk.
+Nossa aplicação Node.js possui as seguintes dependências:
 
-**Especificações**:
+* **express:** framework para Node.js que fornece recursos mínimos para construção de servidores web.
+* **axios:** cliente HTTP baseado em promessas para o Node.js e para o navegador
+* **uuid:** gerador de identificador único universal.
 
-A aplicação terá basicamente duas rotas que irão retornar informações vindas de APIs externas formatadas de acordo com a especifícação a seguir.
+A raíz de nossa aplicação é o **app.js**, que possui o seguinte formato:
+
+```javascript
+// Instanciação da aplicação express
+const express = require('express');
+const app = express()
+
+// Requisição dos arquivos de rota
+const homeRoutes = require('./routes/home.js')
+const chunkNorrisRoutes = require('./routes/chucknorris.js')
+const atividadeRoutes = require('./routes/atividade.js')
+
+// Consumo das rotas
+app.use(chunkNorrisRoutes)
+app.use(homeRoutes)
+app.use(atividadeRoutes)
+
+// Aplicação escutando/rodando na porta 8080 (localhost)
+app.listen(8080, () => {
+    console.log(`Rodando na porta 8080`)
+})
+```
+
+## Rotas
+
+Adentrando a pasta **routes**, em nossa aplicação temos basicamente três rotas, uma com a raiz do projeto e duas que retornam informações vindas de APIs externas formatadas de acordo com especificações estabelecidas.
 
 ***
+
 ### Rota → Get /
 
-1. Nesta rota será efetuado um get na raiz do projeto.
+Rota presente no arquivo **home.js** com a seguinte estrutura:
 
-2. O retorno desta API deverá ter um texto simples.
-Exemplo:
+```javascript
+// Instanciação da biblioteca express e seu módulo router
+const express = require('express')
+const router = express.Router()
 
-```json
- Este é o app do Grupo 10 😀
+// Efetuado get na raíz do projeto
+router.get('/', (req, res) =>
+
+    // Texto de retorno da rota
+    res.send("Esse trabalho percente ao Grupo-1"));
+
+// Exportação do módulo router
+module.exports = router
 ```
-
-3. Status code para sucesso da requisição será `200`
 
 ***
+
 ### Rota → Get /api/piadas
 
-1. Nesta rota será efetuado um get em: [https://api.chucknorris.io/jokes/random](https://api.chucknorris.io/jokes/random)
+Rota presente no arquivo **chucknorris.js** com a seguinte estrutura:
 
-2. O retorno da API a ser desenvolvida deverá estar na seguinte formatação:
+```javascript
+const express = require('express')
+const router = express.Router()
 
-```json
-{
-  "data_atualizacao": "05-01-2020",
-  "data_criacao": "05-01-2020",
-  "icone": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
-  "id": "b7585687-b14b-406d-a557-9cfeea4a8c16",
-  "piada": "CHUCK NORRIS can slit your throat with his pinkie toenail.",
-  "referencia": "https://api.chucknorris.io/jokes/2itjvbXZTcScUiuAMoOPLA"
-}
+const CnController = require("../controllers/CnController.js")
+
+router.get('/api/piadas', CnController.cnJson);
+
+module.exports = router
 ```
 
-#### Observações sobre os campos no retorno esperado
-
-- `data_atualizacao` → será o campo “updated_at” da resposta da API original.
-  - Formatação: Sem as horas (somente a data no formato DD/MM/AAAA)
-
-- `data_criacao` → será o campo “created_at” da resposta da API original.  
-  - Formatação: Sem as horas (somente a data no formato DD/MM/AAAA)
-
-- `icone` → será o campo “icon_url” da resposta da API original.  
-  - Formatação: Não há (manter original)
-
-- `id` → será um GUID gerado randomicamente
-  - Formatação: um GUID possui o formato {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX} onde X é um Hexadecimal (0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F). 
-  - Pode-se utilizar libs para a geração ou criação de funções para esse fim.
-
-- `piada` → será o campo “value” da resposta da API original. 
-  - Formatação: a palavra Chuck Norris deverá estar em caixa alta dentro da piada.
-
-- `referencia` → será o campo “url” da resposta da API original.  
-  - Formatação: Não há (manter original)
-
-3. Status code para sucesso da requisição será `200`
+Semelhante à rota anterior, possuímos quase a mesma estrutura, mas desta vez nossa rota utilizará como parâmetro do get a função **cnJson** presente no **CnController.js**.
 
 ***
 
 ### Rota → Get /api/atividades
 
-1. Nesta rota será efetuado um get em: [https://www.boredapi.com/api/activity](https://www.boredapi.com/api/activity)
+Rota presente no arquivo **atividade.js** com a seguinte estrutura:
 
-2. O retorno da API a ser desenvolvida deverá estar na seguinte formatação:
+```javascript
+const express = require('express')
+const router = express.Router()
 
-```json
-{
-  "id": "b7585687-b14b-406d-a557-9cfeea4a8c16",
-  "atividade": "Wash your car",
-  "tipo": "busywork",
-  "participantes": 1,
-  "acessibilidade": "15%"
-}
+const AtividadeController = require("../controllers/AtividadeController.js")
+
+router.get('/api/atividades', AtividadeController.atJson)
+
+module.exports = router
 ```
 
-### Observações sobre os campos no retorno esperado
-
-- `id` → será um GUID gerado randomicamente
-  - Formatação: um GUID possui o formato {XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX} onde X é um Hexadecimal (0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F)
-  - Pode-se utilizar libs para a geração ou criação de funções para esse fim.
-
-- `atividade` → será o campo “activity” da resposta da API original.  
-  - Formatação: Não há (manter original)
-
-- `tipo` → será o campo “type” da resposta da API original.  
-  - Formatação: Não há (manter original)
-
-- `participantes` → será o campo “participants” da resposta da API original.  
-  - Formatação: Não há (manter original)
-
-- `acessibilidade` →será o campo “accessibility” da resposta da API original.  
-  - Formatação: transformar para número percentual dentro de uma string.
-  - Exemplo: api respondeu `0.15` logo a resposta será `"15%"`
-
-3. Status code para sucesso da requisição será `200`
+Semelhante às rota anteriores, possuímos quase a mesma estrutura, mas desta vez nossa rota utilizará como parâmetro do get a função **atJson** presente no **AtividadeController.js**.
 
 ***
 
-### Preparação do projeto para Deploy no Elastic Beanstalk
- - Por padrão o serviço abre acesso á porta **8080**, portanto é necessário que a aplicação esteja respondendo nessa mesma porta.
+## Controladores
 
- - Para inicializar a aplicação é preciso criar a chave `start` dentro do objeto `scripts` do arquivo package.json do projeto Node. O valor dessa chave deve ser uma string contendo o comando que inicializa a aplicação.
+Adentrando a pasta **controllers**, temos os arquivos js responsáveis pela requisição dos dados obtido através das APIs, exportando o JSON para as rotas adequadas.
 
-![exemplo package.json](https://images.tango.us/workflows/23e0be0e-db8d-447b-bce6-28b449120230/steps/9caa2f0c-d6a4-4000-ade7-f297b289508f/4c54c1fc-bb25-4356-8d56-7b0edc1ab949.png)
+***
 
- - Essas e outras configurações padrões podem ser alteradas através de arquivos de configuração dentro do projeto.
+### Controlador → CnController.js
 
- - Por fim, comprimir a pasta do projeto, lembrando que o diretório node_modules não deve ser incluído.
+```javascript
+const express = require('express')
+const router = express.Router()
+const axios = require("axios")
+const { v4: uuidv4 } = require('uuid');
 
- Exemplo: [aqui](https://crudtec-site.s3.amazonaws.com/wp-content/uploads/2023/01/05112026/compress.gif)
+const func = require("../functions/Cnfunction.js")
+
+exports.cnJson = async (req, res) => {
+    try {
+        const { data } = await axios("https://api.chucknorris.io/jokes/random")
+        const dateupdate = func.formatdate((data.updated_at))
+        const datecreate = func.formatdate((data.created_at))
+        const icon = data.icon_url
+        const id = uuidv4();
+        const piada = func.formatePiada(func.formatevalue(data.value));
+        const referencia = data.url
+
+        const returnValueCN = func.createJsonCN(dateupdate, datecreate, icon, id, piada, referencia)
+
+        res.send(returnValueCN)
+    } catch (error) {
+        res.send({ error: error.message })
+    }
+}
+```
+
+1. Exportamos a função **cnJson** que será utilizado como parâmetro em nossa rota **/api/piadas**, esta por sua vez retorna um conjunto de dados no formato JSON.
+2. Dentro da função realizamos um tratamento de exceções utilizando o bloco **try catch**, visando realizar tratamento de possíveis erros.
+3. Utilizamos o axios pra realizar uma requisição https à API de piadas, e recebemos um conjunto de dados.
+4. Utilizamos o arquivo **Cnfunction.js** para fazer a formatação adequada dos dados, usando as funções adequadas para cada índice.
+
+***
+
+### Controlador → AtividadeController.js
+
+```javascript
+const axios = require("axios")
+const { v4: uuidv4 } = require('uuid');
+
+const func = require("../functions/Atfunctions.js")
+
+exports.atJson = async (req, res) => {
+    try {
+        const { data } = await axios("https://www.boredapi.com/api/activity")
+        const id = uuidv4()
+        const atividades = data.activity
+        const tipo = data.type
+        const participantes = data.participants
+        const acessibilidade = func.formatAcc(data.accessibility)
+
+        const returnValueAT = func.createJsonAT(id, atividades, tipo, participantes, acessibilidade)
+
+        res.send(returnValueAT)
+    } catch (error) {
+        res.send({ error: error.message })
+    }
+
+}
+```
+
+1. Exportamos a função **atJson** que será utilizado como parâmetro em nossa rota **/api/atividades**, esta por sua vez retorna um conjunto de dados no formato JSON.
+2. Dentro da função realizamos um tratamento de exceções utilizando o bloco **try catch**, visando realizar tratamento de possíveis erros.
+3. Utilizamos o axios pra realizar uma requisição https à API de atividades, e recebemos um conjunto de dados.
+4. Utilizamos o arquivo **Atfunctions.js** para fazer a formatação adequada dos dados, usando as funções adequadas para cada índice.
+
+***
+
+## Funções
+
+Adentrando a pasta **functions**, temos os arquivos js responsáveis pela formatação dos dados obtido através das APIs, montando e exportando o JSON para os controladores adequados. Temos os arquivos Cnfunction.js e Atfunctions.js.
+
+## Preparação do projeto para Deploy no Elastic Beanstalk
+
+ - Para inicializar a aplicação é criada a chave `start` dentro do objeto `scripts` do arquivo package.json do projeto Node. O valor dessa chave deve ser uma string contendo o comando que inicializa a aplicação.
+
+![img02](https://images.tango.us/workflows/23e0be0e-db8d-447b-bce6-28b449120230/steps/9caa2f0c-d6a4-4000-ade7-f297b289508f/4c54c1fc-bb25-4356-8d56-7b0edc1ab949.png)
+
+ - Por fim, é comprimida a pasta do projeto, com exceção do diretório node_modules.
  
  ![compress](https://crudtec-site.s3.amazonaws.com/wp-content/uploads/2023/01/05112026/compress.gif)
  
@@ -180,36 +267,9 @@ Lembre-se de manter uma coêrencia nas versões por exemplo: projeto-node-v1, pr
 
 ![Step 10 screenshot](https://images.tango.us/workflows/6d444cf6-7a3c-4959-b26c-55383834d79f/steps/ac98c95f-721b-409b-8ef3-5cbc8d90b4a6/7e18be39-5928-436a-bcf9-aa2f1ddb5060.png?crop=focalpoint&fit=crop&fp-x=0.5373&fp-y=0.4019&fp-z=1.5703&w=1200&mark-w=0.2&mark-pad=0&mark64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL21hZGUtd2l0aC10YW5nby13YXRlcm1hcmsucG5n&ar=1920%3A902)
 
-### Observações
+## Autores
 
-Mais informações sobre o Elastic Beanstalk podem ser encontradas na [documentação da AWS](https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/Welcome.html)
-
-***
-
-## O que será avaliado
-
-- Projeto em produção na AWS Elastic Beanstalk
-- Possuir as 3 rotas
-- Sobre as rotas: 
-  - Possuir em cada rota os retornos esperados (somente campos solicitados conforme especificação)
-  - Manipulação do retorno da API original e entrega no formato solicitado
-- Organização geral do código fonte
-  - Estrutura de pastas
-  - Divisão de responsabilidades em arquivos/pastas distintos
-  - Otimização do código fonte (evitar duplicações de código)
-- Objetividade do README.md 
-
-***
-
-## Entrega
-
-- Aceitar o convite do repositório da sprint-4-pb-aws-ifce;
-- **O trabalho deve ser feito em grupos de quatro pessoas**;
-  - Evitar repetições de grupos da sprint anterior;
-- Criar uma branch no repositório com o formato grupo-número (Exemplo: grupo-1);
-- Subir o trabalho na branch com um [Readme.md](README.md) 
-  - documentar detalhes sobre como a avaliação foi desenvolvida
-  - dificuldades conhecidas
-  - como utilizar o sistema
-  - 🔨 código fonte desenvolvido (Sugestão: pasta `src`)
-- O prazo de entrega é até às 12h do dia 16/01/2023 no repositório do github ([https://github.com/Compass-pb-aws-2022-IFCE/sprint-4-pb-aws-ifce](https://github.com/Compass-pb-aws-2022-IFCE/sprint-4-pb-aws-ifce))
+* [@herissonhyan](https://github.com/herissonhyan)
+* [@Rosemelry](https://github.com/Rosemelry)
+* [@luiz2CC](https://github.com/luiz2CC)
+* [@EdivalcoAraujo](https://github.com/EdivalcoAraujo)
