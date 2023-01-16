@@ -1,5 +1,7 @@
 # Avaliação Sprint 4 - Programa de Bolsas Compass UOL / AWS e IFCE
 
+[![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/LogoCompasso-positivo.png/440px-LogoCompasso-positivo.png)](https://compass.uol/pt/home/)
+
 Avaliação da quarta sprint do programa de bolsas Compass UOL para formação em machine learning para AWS.
 
 ***
@@ -10,34 +12,31 @@ O objetivo deste projeto é construir uma aplicação NodeJS para consumir o con
 
 ## Ferramentas
 - [Node.js](https://nodejs.org/en/)
-
 - [Biblioteca JS GUID](https://www.npmjs.com/package/js-guid)
 
+
 ## Estrutura de pastas
-(definição e foto)
+
 
 ## Iniciando o projeto
 Para iniciar o projeto utilizamos o seguinte comando para gerar o arquivo **package.json** com as configurações iniciais
-```
+```js
 npm init
 ```
 
 ## Instalando dependências
-Instalação do express para gerenciar a aplicação
+Utilize o comando abaixo para baixar as dependências necessárias contidas no arquivo *package.json*
+```js
+npm install
 ```
-npm install express
-```
-Instalando a biblioteca axios para realizar o consumo da API
-```
-npm install axios
-```
-Comando para realizar a instalação da biblioteca responsável por gerar o GUID posteriormente
-```
-npm install js-guid
-```
+> **Express** facilita o processo de criar um servidor
+
+> **Axios** faz requisições tanto para o cliente quanto para o servidor
+
+> **JS Guild** biblioteca responsável por gerar o GUID
 
 ## Formatações
-Dentro do diretório **src**, criamos o arquivo **formatacoes.js** para formatar os retornos de ambas as APIs com a seguintes funções definidas já no corpo do module.exports responsável por exporta-las
+Dentro do diretório **src**, criamos o arquivo **formatacoes.js** para formatar os retornos de ambas as APIs com a seguintes funções definidas já no corpo do *module.exports* responsável por exportá-las
 
 ```js
 module.exports = {
