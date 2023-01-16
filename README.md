@@ -15,8 +15,12 @@ O objetivo deste projeto é construir uma aplicação NodeJS para consumir o con
 - [Biblioteca JS GUID](https://www.npmjs.com/package/js-guid)
 
 
-## Estrutura de pastas
+## Estrutura das pastas
+Para maior organização dos códigos do projeto, o mesmo foi estruturado da seguinte maneira:
 
+![image](https://user-images.githubusercontent.com/80788425/212719261-9a57cf3a-d607-40f7-8498-9b1c2d5b3598.png)
+
+> A pasta raiz contém os arquivos **.json**, responsáveis por descrever detalhes do projeto como as dependências e a pasta **/src**, que possui todos os códigos desenvolvidos
 
 ## Iniciando o projeto
 Para iniciar o projeto utilizamos o seguinte comando para gerar o arquivo **package.json** com as configurações iniciais
