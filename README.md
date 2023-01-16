@@ -379,7 +379,8 @@ Mais informações sobre o Elastic Beanstalk podem ser encontradas na [documenta
 
 ### Acesso ao projeto
 
-Você pode [acessar o código fonte do projeto](https://github.com/camilafernanda/GlicoCare) 
+Você pode [acessar o deploy]()
+⚠️link do projeto WEB será válido um dia antes da avaliação da Sprint
 
 
 ### Equipe
