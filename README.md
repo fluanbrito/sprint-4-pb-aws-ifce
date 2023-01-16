@@ -4,15 +4,109 @@ Avaliação da quarta sprint do programa de bolsas Compass UOL para formação e
 
 ***
 
-## Execução (Código Fonte)
+## Objetivo
 
-Com base nas atividades anteriores realizadas, crie uma aplicação nodeJs (express) que irá consumir duas APIs distintas e efetue o deploy na AWS Elastic Beanstalk.
+O objetivo deste projeto é construir uma aplicação NodeJS para consumir o conteúdo de duas apis externas e implantá-la no ambiente da AWS Elastic Beanstalk.
 
-**Especificações**:
+## Ferramentas
+- [Node.js](https://nodejs.org/en/)
 
-A aplicação terá basicamente duas rotas que irão retornar informações vindas de APIs externas formatadas de acordo com a especifícação a seguir.
+- [Biblioteca JS GUID](https://www.npmjs.com/package/js-guid)
 
-***
+## Estrutura de pastas
+(definição e foto)
+
+## Iniciando o projeto
+Para iniciar o projeto utilizamos o seguinte comando para gerar o arquivo **package.json** com as configurações iniciais
+```
+npm init
+```
+
+## Instalando dependências
+Instalação do express para gerenciar a aplicação
+```
+npm install express
+```
+Instalando a biblioteca axios para realizar o consumo da API
+```
+npm install axios
+```
+Comando para realizar a instalação da biblioteca responsável por gerar o GUID posteriormente
+```
+npm install js-guid
+```
+
+## Formatações
+Dentro do diretório **src**, criamos o arquivo **formatacoes.js** para formatar os retornos de ambas as APIs com a seguintes funções definidas já no corpo do module.exports responsável por exporta-las
+
+```js
+module.exports = {
+    formatDate(data){
+        // Seleciona as primeiras posições da data considerando o formato 00/00/0000
+        let date = data.slice(0,11)
+        // Transforma em objeto data e utiliza a função toLocal para exibir no formato brasileiro
+        date = new Date(date).toLocaleDateString('pt-br')
+        // Retorna a data formatada
+        return date
+    },
+
+    geraGUID(){
+        // Realiza a requisição do objeto GUID da biblioteca js-guid
+        const { Guid } = require('js-guid');
+        // Gera um guid e transforma em string
+        let guid = new Guid().toString()
+        // Retorna o identificador guid
+        return guid
+    },
+
+    caixaAlta(frase){
+        // Substitui as palavras "Chuck" e "Norris" por "CHUCK" e "NORRIS" na frase
+        frase = frase.replace("Chuck", "CHUCK")
+        frase = frase.replace("Norris", "NORRIS")
+        // Retorna a frase com as substituições
+        return frase
+    },
+
+    acessibilidade(numero){
+        // Transforma o parâmetro em float
+        numero = parseFloat(numero)
+        // Multiplica por 100 para exibir como inteiro
+        numero *= 100
+        // Retorna o número com o símbolo da porcentagem
+        return `${numero}%`
+    }
+}
+
+```
+# Criando Rotas
+
+# Criando Programa Principal
+
+# Executando
+1 - Abra o terminal no diretório onde está localizado o arquivo app.js e execute o comando abaixo para realizar a instalação das dependências necessárias.
+
+```
+npm install
+```
+2 - Em seguida, no mesmo diretório, utilize o comando a seguir para executar a aplicação, que será iniciada por padrão no localhost:8080.
+
+```
+npm run dev
+```
+# Resultados #
+ Na raiz, localhost:8080/, temos apenas a seguinte mensagem:
+
+![rota principal](https://user-images.githubusercontent.com/103221427/212692559-02db19c4-c12f-481e-93d5-c7a31c589687.png)
+
+
+Em localhost:8080/api/piadas/ temos o retorno exibido desta forma:
+![rota piadas](https://user-images.githubusercontent.com/103221427/212693583-fd7238e5-bd65-4a31-87af-c3483c4e5395.png)
+
+E por fim, um exemplo da rota localhost:8080/api/atividades/ :
+
+![rota atividades](https://user-images.githubusercontent.com/103221427/212693720-c122be75-2cb8-45db-97f8-55e4c406156e.png)
+
+
 ### Rota → Get /
 
 1. Nesta rota será efetuado um get na raiz do projeto.
@@ -200,6 +294,12 @@ Mais informações sobre o Elastic Beanstalk podem ser encontradas na [documenta
 - Objetividade do README.md 
 
 ***
+
+## Autores
+- Dayanne Lucy
+- Humberto Sampaio
+- Mylena Soares
+- Rafael Pereira
 
 ## Entrega
 
