@@ -193,7 +193,32 @@ E por fim, um exemplo da rota **localhost:8080/api/atividades/** :
 ***
 
 ## Deploy (AWS Elastic Beanstalk)
-...
+Criando aplicação na região Norte da Virgínia → `us-east-1`
+
+![criar](https://user-images.githubusercontent.com/103221427/212762302-ee388fa2-8853-40eb-a65d-dea01fb135b8.png)
+
+
+Atribuindo nome à aplicação
+
+![nome](https://user-images.githubusercontent.com/103221427/212762958-5bc78cae-7726-4d23-a38f-e413c6311d98.png)
+
+Selecionando plataforma Node.js e marcando a opção de enviar arquivo prório
+
+![plataforma](https://user-images.githubusercontent.com/103221427/212763212-b0dbcd0e-727b-48d4-a705-de5be2f955c2.png)
+
+Nomeando versão e fazendo upload do arquivo compactado do projeto. Em sequência, realizamos a criação da aplicação
+
+![criando app](https://user-images.githubusercontent.com/103221427/212763633-416ec31d-94a8-4612-986c-1d6cfb2e4abf.png)
+
+Logo após, serão criados os recursos necessários para garantir o funcionamento da aplicação
+
+![recursos](https://user-images.githubusercontent.com/103221427/212763999-45428179-9faf-4e5d-96a1-a9a04075efce.png)
+
+
+Link de acesso disponibilizado
+
+![link](https://user-images.githubusercontent.com/103221427/212764764-bc45326b-b22c-464d-a19e-74f8cb4b474b.png)
+
 
 ***
 
