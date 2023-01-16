@@ -4,7 +4,6 @@
   "description": "Avaliação da quarta sprint do programa de bolsas Compass UOL para formação em machine learning para AWS.",
   "main": "app.js",
   "scripts": {
-    "dev": "node src/app",
     "start": "node ./src/app.js"
   },
   "repository": {
