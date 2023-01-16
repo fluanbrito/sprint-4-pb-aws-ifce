@@ -256,9 +256,13 @@ Lembre-se de manter uma coêrencia nas versões por exemplo: projeto-node-v1, pr
 
 ![projeto_criado2](https://user-images.githubusercontent.com/119500249/212688948-ff068725-62f5-4537-86b3-3dc5fd9ec8f2.png)
 
+Obs.: 1º é a URL exposta de tua aplicação, é importante sinalizar que essa URL é única para cada aplicação, veja que ela se baseia no nome escolhido da aplicação e da região selecionada. 2º sinaliza o status da integridade do projeto, se algo estiver incorreto você pode clicar em "Causes" para entender o que causou o erro. 3º local onde caso seja necessário subir uma atualização do projeto.
+
 # Observações
 Mais informações sobre o Elastic Beanstalk podem ser encontradas na [documentação da AWS](https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/Welcome.html)
 
+# Utilitário
+Para acessar o projeto gerado nessa aplicação, acesse o link do [projeto exemplo](http://projetonodeexample-env.eba-w4qu2yup.us-east-1.elasticbeanstalk.com/)
 
 
 ## Autores
