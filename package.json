@@ -1,12 +1,12 @@
 {
   "name": "sprint4",
   "version": "1.0.0",
-  "description": "Avaliação da quarta sprint do programa de bolsas Compass UOL para formação em machine learning para AWS.",
+  "description": "> Neste projeto fazemos utilização de duas APIs distintas e executar o deploy na AWS Elastic Beanstalk.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
-  "author": "Equipe2",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.2",
@@ -15,5 +15,15 @@
     "nodemon": "^2.0.20",
     "uuid": "^9.0.0"
   },
-  "keywords": []
+  "devDependencies": {
+    "@types/uuid": "^9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Compass-pb-aws-2022-IFCE/sprint-4-pb-aws-ifce.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Compass-pb-aws-2022-IFCE/sprint-4-pb-aws-ifce/issues"
+  },
+  "homepage": "https://github.com/Compass-pb-aws-2022-IFCE/sprint-4-pb-aws-ifce#readme"
 }
