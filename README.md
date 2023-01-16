@@ -48,7 +48,7 @@ Para instalar as dependências do seu projeto, vamos começar com a express, que
 ```
 npm install --save express
 ```
-Quando o comando "--save" for usado com o npm install, ele salvará todos os pacotes principais instalados na seção de dependências do arquivo package. arquivo json.
+Quando o comando *"--save"* for usado com o npm install, ele salvará todos os pacotes principais instalados na seção de dependências do arquivo package. arquivo json.
 
 Instale uma ferramenta chamada nodemon que reinicia automaticamente o aplicativo do nó ao detectar qualquer alteração.
 ```
@@ -199,7 +199,7 @@ server.use('/api', atv)
 server.listen(8080); 
 console.log("Servidor aberto em 8080");
 ```
-Agora iremos fazer a preparação do projeto para Deploy no Elastic Beanstalk, acessando o arquivo package.json, é preciso criar a chave ==start== dentro do objeto ==scripts== renomeando-o de acordo com o arquivo de importação de rotas do teu projeto. Segue exemplo de como deve ficar:
+Agora iremos fazer a preparação do projeto para Deploy no Elastic Beanstalk, acessando o arquivo package.json, é preciso criar a chave **==start==** dentro do objeto **==scripts==** renomeando-o de acordo com o arquivo de importação de rotas do teu projeto. Segue exemplo de como deve ficar:
 
 ![json_config](https://user-images.githubusercontent.com/119500249/212320151-78cb8ccb-7aa2-460c-beb0-6c519fec416a.png)
 
@@ -236,8 +236,28 @@ Se tudo tiver ok, será mostrado a nome do arquivo e a sinalização de Arquivo 
 
 6. Por fim clique em "Create application"
 
+7. Aqui serão exibidos os logs da criação do ambiente. Observe que o projeto começará a ser criado com uma URL exposta do projeto e seus demais serviços
 
+![log_criacao](https://user-images.githubusercontent.com/119500249/212686581-66433460-f8c6-4a3e-a843-2e923b999e9f.png)
 
+Ele irá demorar alguns minutos, pois ele estará criando vários serviços AWS serão criados (S3, EC2, Security Groups, etc). Após concluir o processo de criação você será direcionado para uma nova janela com informações do projeto, como URL exposta da apliação, integridade e demais detalhes do projeto. Segue a imagem de base:
+
+![projeto_criado](https://user-images.githubusercontent.com/119500249/212689563-9242596f-7043-4462-a93f-9ac726afccc5.png)
+
+8. Visto que o projeto exposto na figura acima foi finalizado com sucesso e a integridade do projeto ocorreu de forma ok, clique em "Causas" para se ter mais informações da execução do projeto. Na imagem logo abaixo temos os principais detalhes do projeto gerado, como: ID de instância, status, o tempo de execução, ID de implatação, tempo de solicitação/sec e etc.
+
+![causas](https://user-images.githubusercontent.com/119500249/212693553-df84e9e9-3ed5-49cd-8c91-1fcc778a4f50.png)
+
+9. Projeto finalizado, tudo sucesso!!!
+Caso seja preciso subir uma atualização do projeto
+Basta clicar em "Upload and deploy" e selecionar o arquivo .zip com o projeto atualizado.
+
+Lembre-se de manter uma coêrencia nas versões por exemplo: projeto-node-v1, projeto-node-v2, etc.
+
+![projeto_criado2](https://user-images.githubusercontent.com/119500249/212688948-ff068725-62f5-4537-86b3-3dc5fd9ec8f2.png)
+
+# Observações
+Mais informações sobre o Elastic Beanstalk podem ser encontradas na [documentação da AWS](https://docs.aws.amazon.com/pt_br/elasticbeanstalk/latest/dg/Welcome.html)
 
 
 
