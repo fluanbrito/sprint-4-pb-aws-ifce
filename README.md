@@ -202,9 +202,13 @@ Adentrando a pasta **functions**, temos os arquivos js responsáveis pela format
 
 ## Preparação do projeto para Deploy no Elastic Beanstalk
 
- - Para inicializar a aplicação é criada a chave `start` dentro do objeto `scripts` do arquivo package.json do projeto Node. O valor dessa chave deve ser uma string contendo o comando que inicializa a aplicação.
+ - Para inicializar a aplicação é criada a chave `start` dentro do objeto `scripts` do arquivo package.json do projeto Node. O valor dessa chave deve ser uma string contendo o comando que inicializa a aplicação. 
+ 
+![Captura de Tela (158)](https://user-images.githubusercontent.com/106123150/212703002-daf1c365-c019-437d-ad54-a5d5d73be7d3.png)
 
-![img02](https://images.tango.us/workflows/23e0be0e-db8d-447b-bce6-28b449120230/steps/9caa2f0c-d6a4-4000-ade7-f297b289508f/4c54c1fc-bb25-4356-8d56-7b0edc1ab949.png)
+- Nesse caso usaremos o comando a seguir para a inicialização desse projeto:
+ 
+ ``npm start``
 
  - Por fim, é comprimida a pasta do projeto, com exceção do diretório node_modules.
  
@@ -250,12 +254,12 @@ Exemplo: projeto-node-v1 ou projeto-node-v1.0.0
 
 
 8. Aqui serão exibidos os logs da criação do ambiente.
-Observe que vários serviços AWS serão criados (S3, EC2, Security Groups, etc).
+Observa-se que vários serviços AWS serão criados (S3, EC2, Security Groups, etc).
 
 ![Step 8 screenshot](https://images.tango.us/workflows/6d444cf6-7a3c-4959-b26c-55383834d79f/steps/b137bf4d-ee4b-44ac-b73a-3be1497c1145/e1c756a8-f99e-4278-a3d3-ef9400859216.png?crop=focalpoint&fit=crop&fp-x=0.5625&fp-y=0.2711&fp-z=1.2000&w=1200&mark-w=0.2&mark-pad=0&mark64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL21hZGUtd2l0aC10YW5nby13YXRlcm1hcmsucG5n&ar=1920%3A902)
 
 
-9. Pronto, aqui está a url exposta para acessar sua aplicação.
+9. Aqui será exibida a url para acessar sua aplicação.
 
 No card Health é possível observar o status da aplicação, se algo estiver incorreto você pode clicar em "Causes" para entender o que causou o erro.
 
@@ -266,12 +270,15 @@ No card Health é possível observar o status da aplicação, se algo estiver in
 
 Basta clicar em "Upload and deploy" e selecionar o arquivo .zip com o projeto atualizado.
 
-Lembre-se de manter uma coêrencia nas versões por exemplo: projeto-node-v1, projeto-node-v2, etc.
+**OBS:** É importante manter uma coêrencia nas versões, por exemplo: projeto-node-v1, projeto-node-v2, etc.
 
 ![Step 10 screenshot](https://images.tango.us/workflows/6d444cf6-7a3c-4959-b26c-55383834d79f/steps/ac98c95f-721b-409b-8ef3-5cbc8d90b4a6/7e18be39-5928-436a-bcf9-aa2f1ddb5060.png?crop=focalpoint&fit=crop&fp-x=0.5373&fp-y=0.4019&fp-z=1.5703&w=1200&mark-w=0.2&mark-pad=0&mark64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL21hZGUtd2l0aC10YW5nby13YXRlcm1hcmsucG5n&ar=1920%3A902)
 
 ## Extensão do Arquivo 
-Deve-se atentar no formato de deploy da aplicações na Elastic Beanstalk. Para que não haja erro na operações os arquivos devem está agrupados em um .ZIP, pois existem outras formas de comprimir arquivos, sendo que estás não são compatíveis. 
+Deve-se atentar no formato de deploy da aplicações na Elastic Beanstalk. Para que não haja erro nas operações, os arquivos devem está agrupados em um .ZIP, pois existem outras formas de comprimir arquivos, sendo que estás não são compatíveis.
+
+## Url da aplicação disponibilizada pela AWS
+http://appnodejs-env.eba-ygc97ixr.us-east-1.elasticbeanstalk.com/
 
 ## Autores
 
