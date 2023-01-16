@@ -11,17 +11,17 @@
 
 ## 📌 Tópicos 
 
-- [📝 Descrição do projeto](#📝-Descrição-do-projeto)
+- [📝 Descrição do projeto](#-descrição-do-projeto)
 
-- [🧑‍💻👩‍💻 Ferramentas e Tecnologias](#🧑‍💻👩‍💻-Ferramentas-e-Tecnologias)
+- [🧑‍💻👩‍💻 Ferramentas e Tecnologias](#-ferramentas-e-tecnologias)
 
-- [🖥️ Código](#🖥️-Código)
+- [🖥️ Código](#%EF%B8%8F-código)
 
-- [📤 Deploy - serviço Elastic Beanstalck](#📤-Deploy---serviço-Elastic-Beanstalck)
+- [📤 Deploy - serviço Elastic Beanstalck](#-deploy---serviço-elastic-beanstalck)
 
-- [♾️ Equipe](#♾️-Equipe)
+- [♾️ Equipe](#%EF%B8%8F-equipe)
 
-- [📌 Considerações finais](#📌-Considerações-finais)
+- [📌 Considerações finais](#-considerações-finais)
 
 <br>
 
