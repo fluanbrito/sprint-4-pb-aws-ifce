@@ -13,8 +13,13 @@ O objetivo deste projeto é construir uma aplicação NodeJS para consumir o con
 ***
 
 ## Ferramentas
-- [Node.js](https://nodejs.org/en/)
-- [Biblioteca JS GUID](https://www.npmjs.com/package/js-guid)
+- **[Node.js](https://nodejs.org/en/)** responsável por construir aplicações web escaláveis
+
+- **[Chuck Norris API](https://api.chucknorris.io/jokes/random)** fornece piadas famosas do Chuck Norris
+
+- **[Bored API](https://www.boredapi.com/api/activity)** fornece atividades aleatórias
+
+- **[Amazon Web Services](https://aws.amazon.com/pt/)** plataforma que fornece serviços relacionados à computação em nuvem
 
 ***
 
@@ -178,25 +183,10 @@ npm start
 
 ***
 
-## Resultado
-Na raiz **localhost:8080** temos apenas a seguinte mensagem:
-
-![rota principal](https://user-images.githubusercontent.com/103221427/212692559-02db19c4-c12f-481e-93d5-c7a31c589687.png)
-
-Em **localhost:8080/api/piadas/** temos o retorno exibido desta forma:
-![rota piadas](https://user-images.githubusercontent.com/103221427/212693583-fd7238e5-bd65-4a31-87af-c3483c4e5395.png)
-
-E por fim, um exemplo da rota **localhost:8080/api/atividades/** :
-
-![rota atividades](https://user-images.githubusercontent.com/103221427/212693720-c122be75-2cb8-45db-97f8-55e4c406156e.png)
-
-***
-
 ## Deploy (AWS Elastic Beanstalk)
 Criando aplicação na região Norte da Virgínia → `us-east-1`
 
 ![criar](https://user-images.githubusercontent.com/103221427/212762302-ee388fa2-8853-40eb-a65d-dea01fb135b8.png)
-
 
 Atribuindo nome à aplicação
 
@@ -219,11 +209,25 @@ Link de acesso disponibilizado
 
 ![link](https://user-images.githubusercontent.com/103221427/212764764-bc45326b-b22c-464d-a19e-74f8cb4b474b.png)
 
+***
 
+## Resultado
+Na raiz **localhost:8080** temos a seguinte mensagem:
+
+![raiz](https://user-images.githubusercontent.com/80788425/212780394-25f0a4a5-6d70-4d78-a3f2-9bf39f967854.png)
+
+Em **localhost:8080/api/piadas/** temos o retorno exibido desta forma:
+
+![piadas](https://user-images.githubusercontent.com/80788425/212780439-f446434c-4a25-4f6f-bf1d-965a9ada8240.png)
+
+Por fim, um exemplo da rota **localhost:8080/api/atividades/**:
+
+![bored](https://user-images.githubusercontent.com/80788425/212780508-90aa3e69-4692-4d20-8b3b-7a71a99381ae.png)
 ***
 
 ## Conclusão
 - Nesse projeto foi abordado a utilização de APIs com NodeJS juntamente com conceitos de computação em nuvem por meio da ferramenta AWS Elastic Beanstalk.
+- A dificuldade encontrada surgiu na hora de fazer o deploy para a AWS, pois ocorreu alguns problemas em como a conta foi configurada.
 
 ***
 
